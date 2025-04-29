@@ -1,0 +1,150 @@
+name: wrench
+version: 0.0.2.9
+github: "ryukzak/wrench"
+license: BSD-3-Clause
+author: "Aleksandr Penskoi"
+maintainer: "aleksandr.penskoi@gmail.com"
+copyright: "2025 Aleksandr Penskoi"
+
+extra-source-files:
+  - README.md
+
+description: Wrench - is a tool for educating computer architecture.
+
+default-extensions:
+  - AllowAmbiguousTypes
+  - ConstraintKinds
+  - DataKinds
+  - DeriveAnyClass
+  - DeriveGeneric
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - ImportQualifiedPost
+  - KindSignatures
+  - LambdaCase
+  - MultiParamTypeClasses
+  - NamedFieldPuns
+  - NoImplicitPrelude
+  - OverloadedStrings
+  - PartialTypeSignatures
+  - RankNTypes
+  - ScopedTypeVariables
+  - TupleSections
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+  - UndecidableInstances
+
+dependencies:
+  - aeson
+  - aeson-casing
+  - base >= 4.7 && < 5
+  - data-default
+  - filepath
+  - gitrev
+  - megaparsec
+  - mtl
+  - optparse-applicative
+  - pretty-simple
+  - regex-tdfa
+  - relude
+  - split
+  - th-env
+  - yaml
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-export-lists
+  - -Wmissing-home-modules
+  - -Wredundant-constraints
+  - -optP-Wno-nonportable-include-path
+
+library:
+  source-dirs: src/wrench
+
+executables:
+  wrench:
+    main: Main.hs
+    source-dirs: src/wrench
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - wrench
+
+  wrench-serv:
+    main: Main.hs
+    source-dirs: src/wrench-serv
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base64
+      - cookie
+      - cryptohash-sha1
+      - crypton
+      - directory
+      - http-api-data
+      - http-conduit
+      - lucid
+      - network-uri
+      - process
+      - servant
+      - servant-lucid
+      - servant-server
+      - text
+      - time
+      - uri-encode
+      - uuid
+      - vector
+      - wai
+      - wai-extra
+      - warp
+      - wrench
+
+  wrench-fmt:
+    main: Fmt.hs
+    other-modules: []
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - directory
+      - http-api-data
+      - lucid
+      - network-uri
+      - process
+      - servant
+      - servant-lucid
+      - servant-server
+      - text
+      - time
+      - uuid
+      - wai
+      - wai-extra
+      - warp
+      - wrench
+
+tests:
+  wrench-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - tasty
+      - tasty-golden
+      - tasty-hunit
+      - tasty-rerun
+      - wrench

@@ -1,0 +1,360 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.38.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           wrench
+version:        0.0.2.9
+description:    Wrench - is a tool for educating computer architecture.
+homepage:       https://github.com/ryukzak/wrench#readme
+bug-reports:    https://github.com/ryukzak/wrench/issues
+author:         Aleksandr Penskoi
+maintainer:     aleksandr.penskoi@gmail.com
+copyright:      2025 Aleksandr Penskoi
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/ryukzak/wrench
+
+library
+  exposed-modules:
+      Main
+      Wrench.Config
+      Wrench.Isa.Acc32
+      Wrench.Isa.F32a
+      Wrench.Isa.RiscIv
+      Wrench.Machine
+      Wrench.Machine.Memory
+      Wrench.Machine.Types
+      Wrench.Misc
+      Wrench.Report
+      Wrench.Translator
+      Wrench.Translator.Parser
+      Wrench.Translator.Parser.CodeSection
+      Wrench.Translator.Parser.DataSection
+      Wrench.Translator.Parser.Misc
+      Wrench.Translator.Parser.Types
+      Wrench.Translator.Types
+      Wrench.Wrench
+  other-modules:
+      Paths_wrench
+  autogen-modules:
+      Paths_wrench
+  hs-source-dirs:
+      src/wrench
+  default-extensions:
+      AllowAmbiguousTypes
+      ConstraintKinds
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      NoImplicitPrelude
+      OverloadedStrings
+      PartialTypeSignatures
+      RankNTypes
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wredundant-constraints -optP-Wno-nonportable-include-path
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , data-default
+    , filepath
+    , gitrev
+    , megaparsec
+    , mtl
+    , optparse-applicative
+    , pretty-simple
+    , regex-tdfa
+    , relude
+    , split
+    , th-env
+    , yaml
+  default-language: Haskell2010
+
+executable wrench
+  main-is: Main.hs
+  other-modules:
+      Wrench.Config
+      Wrench.Isa.Acc32
+      Wrench.Isa.F32a
+      Wrench.Isa.RiscIv
+      Wrench.Machine
+      Wrench.Machine.Memory
+      Wrench.Machine.Types
+      Wrench.Misc
+      Wrench.Report
+      Wrench.Translator
+      Wrench.Translator.Parser
+      Wrench.Translator.Parser.CodeSection
+      Wrench.Translator.Parser.DataSection
+      Wrench.Translator.Parser.Misc
+      Wrench.Translator.Parser.Types
+      Wrench.Translator.Types
+      Wrench.Wrench
+      Paths_wrench
+  autogen-modules:
+      Paths_wrench
+  hs-source-dirs:
+      src/wrench
+  default-extensions:
+      AllowAmbiguousTypes
+      ConstraintKinds
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      NoImplicitPrelude
+      OverloadedStrings
+      PartialTypeSignatures
+      RankNTypes
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wredundant-constraints -optP-Wno-nonportable-include-path -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , data-default
+    , filepath
+    , gitrev
+    , megaparsec
+    , mtl
+    , optparse-applicative
+    , pretty-simple
+    , regex-tdfa
+    , relude
+    , split
+    , th-env
+    , wrench
+    , yaml
+  default-language: Haskell2010
+
+executable wrench-fmt
+  main-is: Fmt.hs
+  hs-source-dirs:
+      app
+  default-extensions:
+      AllowAmbiguousTypes
+      ConstraintKinds
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      NoImplicitPrelude
+      OverloadedStrings
+      PartialTypeSignatures
+      RankNTypes
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wredundant-constraints -optP-Wno-nonportable-include-path -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , data-default
+    , directory
+    , filepath
+    , gitrev
+    , http-api-data
+    , lucid
+    , megaparsec
+    , mtl
+    , network-uri
+    , optparse-applicative
+    , pretty-simple
+    , process
+    , regex-tdfa
+    , relude
+    , servant
+    , servant-lucid
+    , servant-server
+    , split
+    , text
+    , th-env
+    , time
+    , uuid
+    , wai
+    , wai-extra
+    , warp
+    , wrench
+    , yaml
+  default-language: Haskell2010
+
+executable wrench-serv
+  main-is: Main.hs
+  other-modules:
+      WrenchServ.Config
+      WrenchServ.Simulation
+      WrenchServ.Statistics
+      Paths_wrench
+  autogen-modules:
+      Paths_wrench
+  hs-source-dirs:
+      src/wrench-serv
+  default-extensions:
+      AllowAmbiguousTypes
+      ConstraintKinds
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      NoImplicitPrelude
+      OverloadedStrings
+      PartialTypeSignatures
+      RankNTypes
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wredundant-constraints -optP-Wno-nonportable-include-path -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , base64
+    , cookie
+    , cryptohash-sha1
+    , crypton
+    , data-default
+    , directory
+    , filepath
+    , gitrev
+    , http-api-data
+    , http-conduit
+    , lucid
+    , megaparsec
+    , mtl
+    , network-uri
+    , optparse-applicative
+    , pretty-simple
+    , process
+    , regex-tdfa
+    , relude
+    , servant
+    , servant-lucid
+    , servant-server
+    , split
+    , text
+    , th-env
+    , time
+    , uri-encode
+    , uuid
+    , vector
+    , wai
+    , wai-extra
+    , warp
+    , wrench
+    , yaml
+  default-language: Haskell2010
+
+test-suite wrench-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Wrench.Isa.RiscIv.Test
+      Wrench.Machine.Memory.Test
+      Wrench.Machine.Types.Test
+      Wrench.Report.Test
+      Paths_wrench
+  autogen-modules:
+      Paths_wrench
+  hs-source-dirs:
+      test
+  default-extensions:
+      AllowAmbiguousTypes
+      ConstraintKinds
+      DataKinds
+      DeriveAnyClass
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      FunctionalDependencies
+      ImportQualifiedPost
+      KindSignatures
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      NoImplicitPrelude
+      OverloadedStrings
+      PartialTypeSignatures
+      RankNTypes
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wredundant-constraints -optP-Wno-nonportable-include-path -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , aeson-casing
+    , base >=4.7 && <5
+    , data-default
+    , filepath
+    , gitrev
+    , megaparsec
+    , mtl
+    , optparse-applicative
+    , pretty-simple
+    , regex-tdfa
+    , relude
+    , split
+    , tasty
+    , tasty-golden
+    , tasty-hunit
+    , tasty-rerun
+    , th-env
+    , wrench
+    , yaml
+  default-language: Haskell2010

@@ -1,0 +1,12 @@
+.stack-work/
+*~
+.DS_Store
+uploads
+bin
+variants/
+variants.csv
+.zed/tasks.json
+.tasty-rerun-log
+__pycache__
+src/wrench/Main
+.tasty-rerun-log.wrench-test
