@@ -27,99 +27,99 @@ _start:
     ; ptr2 dùng để ghi vào bộ nhớ đệm padding 
     ; ptr2 trỏ vào địa chỉ của padding 
     load_imm padding            
-    store_addr ptr2          ; mem[ptr2] = padding[1]
+    store ptr2          ; mem[ptr2] = padding[1]
 
 ; ----------------------------------------------------------------------------------------------------
 count_loop:             ; đọc lần lượt các phần tử, in hoa chúng (rồi ghi vào padding), đồng thời đếm 
     ; đọc từ input vào temp; tới break_count nếu đọc phải '\n'
     load_ind input_addr     ; đọc từ input 
-    store_addr temp         ; lưu vào biến tạm thời 
+    store temp         ; lưu vào biến tạm thời 
     sub const_newline       ; acc <- acc - 10   ; check new line 
     beqz break_count        ; break the loop
 
     ; tăng giá trị count lên 1 
-    load_addr count    
+    load count    
     add const_1
-    store_addr count            ; count = count + 1
+    store count            ; count = count + 1
 
     ; dừng vòng lặp khi đếm đủ số phần tử 
-    load_addr const_31                ; check if count > 31 
+    load const_31                ; check if count > 31 
     sub  count
     ble handle_overflow
 
 check_uppercase:            ; kiểm tra xem có cần làm in hoa hay ko 
-    load_addr temp 
+    load temp 
     sub const_a           ; acc = acc - 'a'
     ble padding_write      ; dont need to uppercase 
 
-    load_addr temp 
+    load temp 
     sub const_z           ; acc = acc - 'z'
     bgt padding_write      ; dont need to uppercase 
 
 get_uppercase:             ; làm in hoa 
-    load_addr temp 
+    load temp 
     sub const_case_diff   ; acc = acc - 32
-    store_addr temp  
+    store temp  
 
 padding_write:                  
     ; ghi chữ in hoa vào padding 
-    load_addr temp
+    load temp
     store_ind ptr2          ; temp -> padding
 
     ; con trỏ ptr2 tịnh tiến 
-    load_addr ptr2          
+    load ptr2          
     add const_1
-    store_addr ptr2        ; ptr2 ++ 
+    store ptr2        ; ptr2 ++ 
 
     ; lặp lại vòng lặp 
     jmp count_loop
 
 ; ----------------------------------------------------------------------------------------------------
 break_count:                        ; thoát khỏi count_loop và ghi số phần tử vào đầu buf 
-    load_addr count   
-    store_addr buf          ; mem[buf[0]] = count
+    load count   
+    store buf          ; mem[buf[0]] = count
 
 ; ----------------------------------------------------------------------------------------------------
 buf_write:                 ; sắp xếp lại các con trỏ, chuẩn bị ghi lại từ padding sang buf 
     load_imm buf            ; trỏ ptr lên buf[1], tịnh tiến dần 
     add const_1             
-    store_addr ptr          
+    store ptr          
 
     load_imm padding         ; trỏ ptr2 vào đầu padding 
-    store_addr ptr2        
+    store ptr2        
 
 write_loop:                 ; vòng lặp ghi lại từ padding sang buf 
     ; chép từ pad ra temp 
     load_ind ptr2 
-    store_addr temp         
+    store temp         
 
     ; ngừng viết nếu temp = 0 
-    load_addr temp
+    load temp
     beqz done
     
     ; chép temp vào buf 
-    load_addr temp
+    load temp
     store_ind ptr            
     load_imm 0xFF            ; dùng filter 
     and temp
     store_ind output_addr    ; ghi vào output 
 
     ; tịnh tiến ptr
-    load_addr ptr  
+    load ptr  
     add const_1
-    store_addr ptr   
+    store ptr   
 
     ; tịnh tiến ptr2 
-    load_addr ptr2  
+    load ptr2  
     add const_1
-    store_addr ptr2   
+    store ptr2   
 
     ; lặp lại vòng lặp write_loop 
     jmp write_loop
 
 ; ----------------------------------------------------------------------------------------------------
 done:           ; điền các chỗ trống của buf bằng '_'
-    load_addr const_end
+    load const_end
     store_ind ptr 
     halt
 
