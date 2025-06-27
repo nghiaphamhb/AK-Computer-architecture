@@ -1,0 +1,27 @@
+name: upper_case_pstr WORLD
+limit: 1000
+memory_size: 0x1000
+input_streams:
+  0x80: [119, 111, 114, 108, 100, 10]   
+  0x84: [] 
+reports:
+  - name: Step-by-step
+    slice: all
+    view: |
+      {pc}:	{instruction}	{pc:label}
+
+  - name: Result
+    slice: last
+    view: |
+      numio[0x80]: {io:0x80:dec}
+      numio[0x84]: {io:0x84:dec}
+      numio[0x80]: {io:0x80:sym}
+      numio[0x84]: {io:0x84:sym}
+      {memory:0:31}
+
+    assert: |
+      numio[0x80]: [] >>> []
+      numio[0x84]: [] >>> [87,79,82,76,68]
+      numio[0x80]: "" >>> ""
+      numio[0x84]: "" >>> "WORLD"
+      mem[0..31]: 	05 57 4f 52 4c 44 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f

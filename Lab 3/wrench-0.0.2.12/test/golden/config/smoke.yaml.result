@@ -1,0 +1,69 @@
+Config
+    { cLimit = 900
+    , cMemorySize = 144
+    , cInputStreams = Just
+        ( fromList
+            [
+                ( "99"
+                ,
+                    [ Num 1
+                    , Num 2
+                    , Num 3
+                    , Chars
+                        [ 104
+                        , 101
+                        , 108
+                        , 108
+                        , 111
+                        ] "hello"
+                    ]
+                )
+            ]
+        )
+    , cInputStreamsFlat = Just
+        ( fromList
+            [
+                ( 99
+                ,
+                    (
+                        [ 1
+                        , 2
+                        , 3
+                        , 104
+                        , 101
+                        , 108
+                        , 108
+                        , 111
+                        ]
+                    , []
+                    )
+                )
+            ]
+        )
+    , cReports = Just
+        [ ReportConf
+            { rcName = Just "foo"
+            , rcSlice = LastSlice
+            , rcAssert = Nothing
+            , rcView = Nothing
+            }
+        , ReportConf
+            { rcName = Nothing
+            , rcSlice = AllSlice
+            , rcAssert = Nothing
+            , rcView = Nothing
+            }
+        , ReportConf
+            { rcName = Nothing
+            , rcSlice = HeadSlice 10
+            , rcAssert = Nothing
+            , rcView = Nothing
+            }
+        , ReportConf
+            { rcName = Nothing
+            , rcSlice = TailSlice 10
+            , rcAssert = Nothing
+            , rcView = Nothing
+            }
+        ]
+    }

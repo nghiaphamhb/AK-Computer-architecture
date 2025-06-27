@@ -1,0 +1,164 @@
+/* @import 'tailwindcss'; */
+
+:root {
+  /* Theme variables */
+  --c-black: #d5d5d5;
+  --c-white: #2a2830;
+  --c-dark-grey: #e4e4e7;
+  --c-grey: #7e7e7e;
+  --c-purple: #6b1fa3;
+  --c-fuschia: #f50777;
+  --c-blue: #0b8cff;
+  --c-green: #00a76c;
+  --c-orange: #dd7200;
+  --c-orange-low-saturation: #d08c47;
+  --c-yellow: #949700;
+
+  /* Functional variables */
+  --selection-color: #000000;
+  --selection-bg: var(--c-grey);
+  --font-stack: 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  font-family: var(--font-stack);
+}
+
+body.dark {
+  --c-black: #1a1a1a;
+  --c-white: #e1e1e1;
+  --c-grey: #898989;
+  --c-dark-grey: #222224;
+  --c-purple: #b462ff;
+  --c-fuschia: #ff45b4;
+  --c-blue: #18b6ff;
+  --c-green: #1beb9e;
+  --c-orange: #ff9528;
+  --c-orange-low-saturation: #a5692d;
+  --c-yellow: #dddd25;
+  --selection-color: #ffffff; /* Fixed selection text color for dark mode */
+  --selection-bg: #4a4a4a; /* Adjusted selection background for better contrast */
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-stack);
+  font-weight: 400;
+}
+pre {
+  font-family: inherit !important;
+}
+
+::selection {
+  color: var(--selection-color);
+  background: var(--selection-bg);
+}
+
+/* Safari specific fix for selection */
+::-webkit-selection {
+  color: var(--selection-color);
+  background: var(--selection-bg);
+}
+
+select {
+  height: 42px;
+  -webkit-appearance: none;
+}
+
+.vim-folded {
+  white-space: nowrap;
+  overflow-x: hidden;
+
+  &::before {
+    content: '+----\00A0';
+    white-space: nowrap;
+  }
+
+  &::after {
+    content: '\00A0······················································································································';
+    display: inline;
+    text-align: start;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+  }
+}
+
+/* those elements are auto generated on server, so we can't do the styles inside a className */
+select > option {
+  padding: 0.5rem;
+  background-color: var(--c-dark-grey);
+}
+
+/* Line numbering in source code and configuration blocks */
+.code-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  font-family: inherit;
+  position: relative;
+  line-height: normal;
+  background-color: var(--c-dark-grey);
+}
+
+.line-numbers {
+  flex: 0 0 3em;
+  min-width: 3em;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  display: flex;
+  flex-direction: column;
+  color: var(--c-grey);
+  text-align: right;
+  border-right: 1px solid rgba(126, 126, 126, 0.3);
+  background-color: var(--c-dark-grey);
+  z-index: 2;
+  padding-left: 0.5em;
+  margin-right: 0;
+}
+
+.line-number {
+  padding-right: 1em;
+  height: 1.2em;
+  line-height: 1.2em;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.code-content {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: pre;
+}
+
+.code-line {
+  padding-left: 0.75em;
+  height: 1.2em;
+  line-height: 1.2em;
+  min-height: 1.2em;
+}
+
+/* Fix for accordion headers when expanded */
+[aria-expanded='true'] {
+  padding-left: 0 !important;
+  margin-left: 0;
+}
+
+[aria-expanded='true']::before {
+  content: '' !important;
+  display: none !important;
+}
+
+[aria-expanded='true']::after {
+  content: '' !important;
+  display: none !important;
+}
+
+/* Align the header text with the code content */
+[aria-expanded='true'] span {
+  padding-left: 3.5em;
+}

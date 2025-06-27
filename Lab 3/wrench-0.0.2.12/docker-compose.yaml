@@ -1,0 +1,12 @@
+services:
+    wrench-serv:
+        image: ryukzak/wrench:edge
+        pull_policy: always
+        environment:
+            - PORT=8080
+            - WRENCH_EXEC=wrench
+            - STORAGE_PATH=/data
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./uploads:/data
